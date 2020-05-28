@@ -2,13 +2,13 @@ version: "3.6"
 services:
     terraria:
         build: .
-    volumes: 
-        - worlds:/terraria/worlds
-        - mods:/terraria/mods
-        - ./mod_packs/:/default.json
-    env_file: .env
-    ports: 
-        - 7777:7777
+        volumes:  
+            - worlds:/terraria/worlds
+            - mods:/terraria/mods
+            - ./mod_packs/:/default.json
+        env_file: .env
+        ports: 
+            - 7777:7777
 
 volumes: 
     worlds:

@@ -35,11 +35,8 @@ COPY --from=TMODLOADER_SETUP --chown=root:root /tmodloader /terraria
 WORKDIR /terraria
 VOLUME /terraria/worlds
 VOLUME /terraria/mods
-RUN mkdir -p /root/.local/share/Terraria/ \
- && ln -s /terraria_data/ /root/.local/share/Terraria/ \
- && mkdir -p /root/.local/share/Terraria/ModLoader/Mods/ \
- && ln -s /terraria/mods /root/.local/share/Terraria/ModLoader/Mods/
 ENV PATH=$PATH:/terraria/
 EXPOSE 7777
-RUN ls /
-CMD ["./tModLoaderServer"]
+COPY entrypoint.sh /
+ENTRYPOINT [ "/entrypoint.sh" ]
+CMD [ "/terraria/tModLoaderServer", "-config /terraria/config.txt", "-autocreate" ]
